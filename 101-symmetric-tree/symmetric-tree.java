@@ -19,11 +19,11 @@ class Solution {
         return isMirror(root.left,root.right);
 
     }
-    private boolean isMirror(TreeNode left, TreeNode right){
-        if(left==null && right==null) return true;
-        if(left==null || right==null) return false;
-        if(left.val != right.val) return false;
+    private boolean isMirror(TreeNode p, TreeNode q){
+        if(p==null && q==null) return true;
+        if(p==null || q==null) return false;
+        if(p.val != q.val) return false;
 
-        return isMirror(left.left, right.right) && isMirror(left.right , right.left);
+        return isMirror(p.left, q.right) && isMirror(p.right , q.left);
     }
 }
