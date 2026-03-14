@@ -19,15 +19,15 @@ class Solution {
             int row = current[0];
             int col = current[1];
             
-            for (int[] direction : directions) {
-                int nextRow = row + direction[0];
-                int nextCol = col + direction[1];
+            for (int i = 0; i<directions.length; i++) {
+                int nextRow = row + directions[i][0];
+                int nextCol = col + directions[i][1];
 
                 if (nextRow >= 0 && nextCol >= 0 &&
                     nextRow < rows && nextCol < cols &&
                     image[nextRow][nextCol] == startColor) {
                     
-                    image[nextRow][nextCol] = newColor;  // fill
+                    image[nextRow][nextCol] = newColor;
                     queue.add(new int[]{nextRow, nextCol});
                 }
             }
