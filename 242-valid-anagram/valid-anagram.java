@@ -1,24 +1,28 @@
 class Solution {
     public boolean isAnagram(String s, String t) {
-        char[] ch1 = s.toCharArray();
-        char[] ch2 = t.toCharArray();
-        Arrays.sort(ch1);
-        Arrays.sort(ch2);
-        String sorted1 = new String(ch1);
-        String sorted2 = new String(ch2);
-        int i=0;
-        int j=0;
-        boolean ana = true;
-        if(sorted1.length()!=sorted2.length()){
-            return false;
+        s = s.toLowerCase();
+        t = t.toLowerCase();
+
+        s = s.replace(" ","");
+        t = t.replace(" ","");
+
+        // Bucket Array
+        int[] count = new int[26];
+
+        // array filling
+        for(int i=0; i<s.length(); i++){
+            count[s.charAt(i)- 'a']++;
         }
-        while(i<sorted1.length() && j<sorted2.length()){
-            if(sorted1.charAt(i)!=sorted2.charAt(j)){
-                ana = false;
+        // array emptying
+        for(int i=0; i<t.length(); i++){
+            count[t.charAt(i)- 'a']--;
+        }
+
+        for(int i=0; i<count.length; i++){
+            if(count[i] != 0){
+                return false;
             }
-            i++;
-            j++;
         }
-        return ana; 
+        return true;
     }
 }
