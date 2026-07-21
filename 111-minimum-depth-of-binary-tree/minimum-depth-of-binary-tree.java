@@ -18,15 +18,27 @@ class Solution {
         if(root==null){
             return 0;
         }
-        if(root.left==null){
-            return minDepth(root.right)+1;
+        Queue<TreeNode> que = new LinkedList<>();
+        que.offer(root);
+        int depth = 1;
+
+        while(!que.isEmpty()){
+            int size = que.size();
+
+            for(int i=0; i<size; i++){
+                TreeNode node = que.poll(); 
+                if(node.left==null && node.right==null){
+                    return depth;
+                }
+                if(node.left!=null){
+                    que.offer(node.left);
+                }
+                if(node.right!=null){
+                    que.offer(node.right);
+                }
+            }
+            depth++;
         }
-        if(root.right==null){
-            return minDepth(root.left)+1;
-        }
-        int leftmin = minDepth(root.left);
-        int rightmin = minDepth(root.right);
-        int min = Math.min(leftmin, rightmin)+1;
-        return min;
+        return depth;
     }
 }
